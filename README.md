@@ -1,1 +1,5 @@
-# chat-real-time-material
+# Ariel Chat
+
+- ReactJs
+- Material
+- ExpressJs
