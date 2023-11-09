@@ -1,7 +1,8 @@
 
 .ChatContainer :global(.MuiGrid-item){
-    margin: 1rem auto;
-    height: 70vh;
+    margin: .5rem auto;
+    height: 85vh;
+    position: relative;
 }
 
 
@@ -12,7 +13,12 @@
 
 .ChatContainer__messages {
     border: 2px solid #f8eeee;
+}
 
+.ChatContainer__actions {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
 }
 
 

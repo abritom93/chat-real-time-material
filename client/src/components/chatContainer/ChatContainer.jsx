@@ -77,27 +77,27 @@ const ChatContainer = () => {
     let disabled = !user;
 
     return (
-            <Grid container className={styles.ChatContainer}>
-                <Grid item xs={12} md={8} xl={4} >
-                    {disabled && (<Alert severity="warning">You must be logged in!</Alert>)}
-                    <div className={styles.ChatContainer__header}>
-                        <ChatHeader
-                            authorWriting={authorWriting}
-                        />
-                    </div>
+        <Grid container className={styles.ChatContainer}>
+            <Grid item xs={12} md={8} xl={4}>
+                {disabled && (<Alert severity="warning">You must be logged in!</Alert>)}
+                <div className={styles.ChatContainer__header}>
+                    <ChatHeader
+                        authorWriting={authorWriting}
+                    />
+                </div>
                     <div className={styles["ChatContainer__messages"]}>
                         <ChatMessageList
                             messages={messages}
                         />
                     </div>
-                    <div className={"actions"}>
+                    <div className={styles["ChatContainer__actions"]}>
                         <ChatActions
                             onWriting={onWriting}
                             isDisabled={disabled}
                         />
                     </div>
-                </Grid>
             </Grid>
+        </Grid>
     );
 };
 
