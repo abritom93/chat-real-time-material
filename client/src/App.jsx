@@ -1,18 +1,24 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import ChatPage from "./pages/chat/ChatPage.jsx";
-import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
+import {
+    createBrowserRouter,
+    RouterProvider
+} from 'react-router-dom';
 import {AuthProvider} from "./providers/AuthProvider.jsx";
+import {routes} from "./routes/index.jsx";
+import {PreferenceProvider} from "./providers/PreferencesProvider.jsx";
+import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
 
 function App() {
+
+    const router = createBrowserRouter([...routes, {
+        path: "*",
+        element: <NotFoundPage/>
+    }]);
+
     return (
         <AuthProvider>
-            <Router>
-                <Routes>
-                    <Route path="/"  element={<ChatPage/>}/>
-                    <Route path="/chat" element={<ChatPage/>}/>
-                    <Route path="*" element={<NotFoundPage/>}/>
-                </Routes>
-            </Router>
+            <PreferenceProvider>
+                <RouterProvider router={router}/>
+            </PreferenceProvider>
         </AuthProvider>
     )
 }

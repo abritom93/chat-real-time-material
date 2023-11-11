@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "vite --port 0",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -13,11 +13,14 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
+    "@huggingface/inference": "^2.6.4",
     "@mui/icons-material": "^5.14.16",
     "@mui/joy": "^5.0.0-beta.13",
+    "@mui/lab": "^5.0.0-alpha.152",
     "@mui/material": "^5.14.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.18.0",
     "socket.io-client": "^4.7.2"
   },

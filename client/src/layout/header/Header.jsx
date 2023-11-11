@@ -11,7 +11,7 @@ import {useAuth} from "../../hooks/useAuth.js";
 import Popover from '@mui/material/Popover';
 import Login from "../../components/login/Login.jsx";
 
-const Header = ({setIsOpenNavigation}) => {
+const Header = ({setIsOpenNavigation, title}) => {
     const {user, login, logout} = useAuth();
     const [anchorEl, setAnchorEl] = useState(null);
     const [username, setUsername] = useState(null);
@@ -44,7 +44,7 @@ const Header = ({setIsOpenNavigation}) => {
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                            Chat
+                            {title}
                         </Typography>
                         {
                             user ?

@@ -1,17 +1,17 @@
 import React from 'react';
-import styles from "./Sidebar.module.css";
+
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Drawer from '@mui/joy/Drawer';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
 import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import ModalClose from '@mui/joy/ModalClose';
 import {useAuth} from "../../hooks/useAuth.js";
-import {NavLink} from "react-router-dom";
+import LinkMenuItem from "./components/LinkMenuItem/LinkMenuItem.jsx";
+import {routes} from "../../routes/index.jsx";
+import styles from "./Sidebar.module.css";
 
 const Sidebar = ({isOpenNavigation, setIsOpenNavigation}) => {
 
@@ -24,23 +24,17 @@ const Sidebar = ({isOpenNavigation, setIsOpenNavigation}) => {
                 <DialogTitle>Ariel Enterprise</DialogTitle>
                 <DialogContent>
                     <List>
-                        <ListItem>
-                            <ListItemButton onClick={() => setIsOpenNavigation(false)}>
-                                <NavLink
-                                    to={"/chat"}
-                                    style={({isActive, isPending}) => {
-                                        return {
-                                            color: isActive ? "grey" : "inherit",
-                                        };
-                                    }}
-                                    className={({isActive, isPending}) => {
-                                        return isActive ? "active" : isPending ? "pending" : "";
-                                    }}
-                                >
-                                    Chat
-                                </NavLink>
-                            </ListItemButton>
-                        </ListItem>
+                        {
+                            routes?.map(({text, path, icon}) => (
+                                <LinkMenuItem
+                                    key={text}
+                                    setIsOpenNavigation={setIsOpenNavigation}
+                                    text={text}
+                                    to={path}
+                                    icon={icon}
+                                />
+                            ))
+                        }
                     </List>
                 </DialogContent>
                 <Box

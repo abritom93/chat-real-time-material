@@ -12,4 +12,4 @@ RUN cd /app/server && npm i
 
 EXPOSE 8080
 
-ENTRYPOINT ["node", "/app/server/index.js"]
+ENTRYPOINT ["node", "/app/server/index.jsx"]

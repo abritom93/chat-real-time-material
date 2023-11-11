@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import ChatMessageList from "../chatMessageList/ChatMessageList.jsx";
 import ChatActions from "../chatActions/ChatActions.jsx";
-import {socket} from "../../socket.js";
-import {useAuth} from "../../hooks/useAuth.js";
+import {socket} from "../../../../socket.js";
+import {useAuth} from "../../../../hooks/useAuth.js";
 import ChatHeader from "../chatHeader/ChatHeader.jsx";
 import Alert from '@mui/material/Alert';
 import Grid from '@mui/material/Grid';
 import styles from "./ChatContainer.module.css";
+import {sendNotification} from "../../../../services/pushNotificationService.js";
 
 const ChatContainer = () => {
     const [isConnected, setIsConnected] = useState(socket.connected);
@@ -38,6 +39,7 @@ const ChatContainer = () => {
                 content: msg
             };
             setMessages(previewState => [...previewState, newMessage]);
+            sendNotification(msg)
         }
 
         function onWriting(author) {
@@ -83,6 +85,7 @@ const ChatContainer = () => {
                 <div className={styles.ChatContainer__header}>
                     <ChatHeader
                         authorWriting={authorWriting}
+                        user={user}
                     />
                 </div>
                     <div className={styles["ChatContainer__messages"]}>
