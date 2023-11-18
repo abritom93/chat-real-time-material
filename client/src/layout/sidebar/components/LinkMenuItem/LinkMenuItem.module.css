@@ -1,0 +1,25 @@
+.LinkMenuItem {
+    width: 100%;
+    padding: .3rem;
+    text-decoration: none;
+    display: block;
+    border-radius: .3rem;
+}
+
+.LinkMenuItem:hover {
+    background: transparent;
+}
+
+.LinkMenuItem--active {
+    background: #7da8d3;
+}
+
+.LinkMenuItem--pending {
+    background: #0e0c0c;
+}
+
+.LinkMenuItem__button :global(.MuiListItemButton-root) {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .2rem;
+}

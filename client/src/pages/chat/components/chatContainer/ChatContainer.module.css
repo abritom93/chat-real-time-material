@@ -1,0 +1,34 @@
+
+.ChatContainer :global(.MuiGrid-item){
+    margin: .5rem auto;
+    height: 90dvh;
+    position: relative;
+}
+
+
+.ChatContainer_authorsWriting {
+    display: flex;
+    gap: .5rem;
+}
+
+.ChatContainer__messages {
+    border: 2px solid #f8eeee;
+}
+
+.ChatContainer__actions {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+
+.ChatContainer__header {
+    max-width: 50vw;
+    display: flex;
+
+    & img {
+        object-fit: cover;
+        width: 60px;
+        height: 30px;
+    }
+}
