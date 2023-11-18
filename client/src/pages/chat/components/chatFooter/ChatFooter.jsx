@@ -2,39 +2,14 @@ import React, {useState} from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import {socket} from "../../../../socket.js";
 import {useAuth} from "../../../../hooks/useAuth.js";
-import {translateText} from "../../../../services/translatorService.js";
-import {usePreference} from "../../../../hooks/usePreference.js";
 import LoadingButton from '@mui/lab/LoadingButton';
-import useToast from "../../../../hooks/useToast.jsx";
+import useSendMessage from "../../hooks/useSendMessage.jsx";
 
-const ChatActions = ({onWriting, isDisabled}) => {
+const ChatFooter = ({onWriting, isDisabled}) => {
     const [message, setMessage] = useState("");
     const {user} = useAuth();
-    const [isSendingMessage, setIsSendingMessage] = useState(false);
-    const {languagePreference} = usePreference();
-    const {sendErrorMessage} = useToast();
-
-    const sendMessage = async () => {
-        if (message?.trim() === "") {
-            return
-        }
-        setIsSendingMessage(true);
-        try {
-            const {translation_text: translationText} = await translateText({
-                textToTranslate: message,
-                sourceLanguage: languagePreference.textInputLanguage,
-                targetLanguage: languagePreference.textInputLanguageForSending
-            })
-            socket.emit("chat", translationText, user);
-            setMessage("");
-        } catch (e) {
-            sendErrorMessage(e.message);
-        } finally {
-            setIsSendingMessage(false);
-        }
-    }
+    const {isSendingMessage, sendMessage} = useSendMessage()
 
     return (
         <Paper
@@ -64,7 +39,8 @@ const ChatActions = ({onWriting, isDisabled}) => {
                 loading={isSendingMessage}
                 disabled={isDisabled || isSendingMessage}
                 onClick={sendMessage}
-                type="button" sx={{p: '10px'}}
+                type="button"
+                sx={{p: '10px'}}
                 aria-label="search"
                 endIcon={<SendIcon/>}
             />
@@ -72,4 +48,4 @@ const ChatActions = ({onWriting, isDisabled}) => {
     );
 };
 
-export default ChatActions;
+export default ChatFooter;

@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import ListItemButton from "@mui/joy/ListItemButton";
 import ListItem from '@mui/joy/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import styles from "./LinkMenuItem.module.css";
 
 const LinkMenuItem = ({text, to, icon, setIsOpenNavigation}) => {
@@ -21,7 +22,7 @@ const LinkMenuItem = ({text, to, icon, setIsOpenNavigation}) => {
                     <ListItemIcon>
                         {icon}
                     </ListItemIcon>
-                    {text}
+                    <ListItemText primary= {text} />
                 </ListItemButton>
             </NavLink>
         </ListItem>

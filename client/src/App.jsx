@@ -6,6 +6,7 @@ import {AuthProvider} from "./providers/AuthProvider.jsx";
 import {routes} from "./routes/index.jsx";
 import {PreferenceProvider} from "./providers/PreferencesProvider.jsx";
 import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
+import {ChatProvider} from "./providers/ChatProvider.jsx";
 
 function App() {
 
@@ -17,7 +18,9 @@ function App() {
     return (
         <AuthProvider>
             <PreferenceProvider>
-                <RouterProvider router={router}/>
+                <ChatProvider>
+                    <RouterProvider router={router}/>
+                </ChatProvider>
             </PreferenceProvider>
         </AuthProvider>
     )

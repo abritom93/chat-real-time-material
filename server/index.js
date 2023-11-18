@@ -5,7 +5,7 @@ import {createServer} from 'node:http'
 import dotenv from "dotenv";
 import {createClient} from "@libsql/client";
 
-dotenv.config();
+//dotenv.config();
 
 const port = process.env.PORT ?? 8080
 
@@ -33,16 +33,28 @@ await db.execute(`
       username TEXT
    )
 `)
-io.on("connection", async (socket) => {
-    console.log("a user has connected")
 
+const activeUsers = {};
+
+io.on("connection", async (socket) => {
+console.log(activeUsers)
     socket.on("disconnect", () => {
-        console.log("a user has disconnected")
-    })
+        delete activeUsers[socket.id];
+        io.emit('activeUsers', Object.values(activeUsers));
+    });
+
+    socket.on('join', (username) => {
+        activeUsers[socket.id] = username;
+        io.emit('activeUsers', Object.values(activeUsers));
+    });
+
+    socket.on('logout', () => {
+       delete activeUsers[socket.id] ;
+       console.log("logout", activeUsers)
+        io.emit('activeUsers', Object.values(activeUsers));
+    });
 
     socket.on("chat", async (msg, username) => {
-        console.log("Msg: ", msg)
-        console.log("User: ", username)
         let result;
         const user = username ?? "anonymous";
         try {
@@ -96,6 +108,7 @@ io.on("connection", async (socket) => {
             console.error(e);
         }
     }
+
 })
 
 app.use(express.static('/app/client/dist'));

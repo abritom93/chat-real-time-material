@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ChatMessageList from "../chatMessageList/ChatMessageList.jsx";
-import ChatActions from "../chatActions/ChatActions.jsx";
+import ChatFooter from "../chatFooter/ChatFooter.jsx";
 import {socket} from "../../../../socket.js";
 import {useAuth} from "../../../../hooks/useAuth.js";
 import ChatHeader from "../chatHeader/ChatHeader.jsx";
@@ -94,7 +94,7 @@ const ChatContainer = () => {
                         />
                     </div>
                     <div className={styles["ChatContainer__actions"]}>
-                        <ChatActions
+                        <ChatFooter
                             onWriting={onWriting}
                             isDisabled={disabled}
                         />
